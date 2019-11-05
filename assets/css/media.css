@@ -1,0 +1,141 @@
+#menuToggle a {
+  text-decoration: none;
+  color: rgb(35, 49, 64);
+  transition: color 0.3s ease;
+}
+
+#menuToggle {
+  display: block;
+  z-index: 1;
+  -webkit-user-select: none;
+  user-select: none;
+  cursor: pointer;
+}
+
+#menuToggle input {
+  display: block;
+  width: 40px;
+  height: 35px;
+  position: absolute;
+  cursor: pointer;
+  opacity: 0; /* hide this */
+  z-index: 3; /* and place it over the hamburger */
+  -webkit-touch-callout: none;
+  margin-top: -5px;
+  margin-left: -5px;
+}
+
+/*
+ * Just a quick hamburger
+ */
+#menuToggle span {
+  display: block;
+  width: 33px;
+  height: 4px;
+  margin-bottom: 5px;
+  position: relative;
+
+  background: rgb(17, 53, 95);
+  border-radius: 3px;
+
+  z-index: 2;
+
+  transform-origin: 4px 0px;
+
+  transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1),
+    opacity 0.55s ease;
+}
+
+#menuToggle span:first-child {
+  transform-origin: 0% 0%;
+}
+
+#menuToggle span:nth-last-child(2) {
+  transform-origin: 0% 100%;
+}
+
+/* 
+ * Transform all the slices of hamburger
+ * into a crossmark.
+ */
+#menuToggle input:checked ~ span {
+  opacity: 1;
+  transform: rotate(45deg) translate(-2px, -1px);
+  background: #232323;
+}
+
+/*
+ * But let's hide the middle one.
+ */
+#menuToggle input:checked ~ span:nth-last-child(3) {
+  opacity: 0;
+  transform: rotate(0deg) scale(0.2, 0.2);
+}
+
+/*
+ * Ohyeah and the last one should go the other direction
+ */
+#menuToggle input:checked ~ span:nth-last-child(2) {
+  transform: rotate(-45deg) translate(0, -1px);
+}
+
+/*
+ * Make this absolute positioned
+ * at the top left of the screen
+ */
+#menu {
+  height: 100%;
+  text-align: center;
+  position: fixed;
+  min-width: 100vw;
+  left: 0;
+  background: rgb(255, 255, 255);
+  top: 0;
+  padding-top: 80px;
+  transform: translateX(100%);
+  transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
+  z-index: 1;
+}
+
+#menu li {
+  padding: 10px 0;
+  font-size: 22px;
+}
+
+/*
+ * And let's slide it in from the left
+ */
+#menuToggle input:checked ~ ul {
+  transform: translateX(0);
+}
+
+@media screen and (max-width: 500px) {
+  .container {
+    padding: 10px;
+  }
+
+  .section-title {
+    font-size: 1.5em;
+  }
+
+  .contact-section .container {
+    padding: 0;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .mobile-only {
+    display: block;
+  }
+
+  .desktop-only {
+    display: none;
+  }
+
+  .mobile-menu {
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    margin-left: auto;
+  }
+}
